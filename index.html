@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pancong Arum</title>
+    <link rel="icon" href="img/logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth; /* Aktifkan smooth scrolling */
+      }
+
+      /* Reset CSS */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Body Styling */
+      body {
+        background-color: #f8f8f8; /* Warna latar belakang */
+        color: #333;
+      }
+
+      /* Navbar Styling */
+      header {
+        background-color: #ffffff;
+        padding: 10px 30px; /* Padding di sini ditambahkan */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        max-height: 100px; /* Atur tinggi maksimum header */
+        transition: padding 0.3s; /* Transisi untuk padding */
+      }
+
+      .logo img {
+        width: 150px; /* Ukuran logo */
+        height: auto; /* Menjaga proporsi logo */
+        margin-right: 20px; /* Tambahkan jarak antara logo dan menu */
+      }
+
+      nav {
+        display: flex;
+        gap: 25px;
+        flex: 1; /* Memungkinkan nav mengambil ruang yang tersedia */
+        justify-content: center; /* Memusatkan menu navigasi */
+        transition: max-height 0.3s ease-out; /* Transisi saat nav aktif */
+        overflow: hidden; /* Sembunyikan konten saat tidak aktif */
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        padding: 5px 10px;
+        font-size: 18px;
+        transition: color 0.3s, transform 0.3s; /* Transisi untuk hover */
+      }
+
+      nav a:hover {
+        color: #f1a32d; /* Warna saat hover */
+        transform: scale(1.1); /* Zoom saat hover */
+      }
+
+      /* Social Media Icons */
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-left: 20px; /* Tambahkan jarak antara menu dan ikon sosial media */
+      }
+
+      .social-icons a {
+        color: #333;
+        font-size: 20px;
+        transition: color 0.3s, transform 0.3s; /* Transisi untuk hover */
+      }
+
+      .social-icons a:hover {
+        color: #f1a32d; /* Warna saat hover */
+        transform: scale(1.2); /* Zoom saat hover */
+      }
+
+      /* Hamburger Menu */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        transition: transform 0.3s; /* Transisi untuk hamburger */
+      }
+
+      .line {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 3px 0;
+        transition: transform 0.3s; /* Transisi untuk garis */
+      }
+
+      /* Hero Section Styling */
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 30px;
+        background-color: #ffffff;
+        flex-wrap: wrap; /* Memungkinkan elemen untuk membungkus */
+        opacity: 0; /* Memulai dengan transparan */
+        transform: translateY(20px); /* Memindahkan ke bawah */
+        animation: fadeIn 0.5s forwards; /* Menambahkan animasi masuk */
+        height: 100vh; /* Atur tinggi hero section ke 100% dari viewport */
+      }
+
+      .highlight {
+        color: yellow; /* Warna kuning */
+        font-weight: bold; /* Teks tebal */
+      }
+
+      /* About Us Section Styling */
+      .about {
+        display: flex; /* Membuat elemen dalam satu baris */
+        align-items: center; /* Pusatkan secara vertikal */
+        padding: 5px 30px;
+        background-color: #ffffff;
+        text-align: center;
+      }
+
+      .about img {
+        max-width: 50%; /* Membuat gambar responsif */
+        height: auto; /* Menjaga proporsi gambar */
+        margin-right: 20px; /* Jarak antara gambar dan teks */
+      }
+
+      .about h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .about p {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 800px;
+        line-height: 1.6;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1; /* Muncul */
+          transform: translateY(0); /* Kembali ke posisi normal */
+        }
+      }
+
+      .hero-text {
+        max-width: 50%;
+        flex: 1; /* Membuat elemen fleksibel */
+      }
+
+      .hero-text h1 {
+        font-size: 4vw; /* Ukuran font responsif */
+        color: #333;
+        line-height: 1.2;
+      }
+
+      .hero-text h1 span {
+        color: #f1a32d;
+        font-style: italic;
+      }
+
+      .hero-text p {
+        font-size: 2vw; /* Ukuran font responsif */
+        color: #666;
+        margin-top: 20px;
+        line-height: 1.6;
+      }
+
+      /* Hero Image Styling */
+      .hero-image img {
+        max-width: 100%; /* Membuat gambar responsif */
+        height: auto; /* Menjaga proporsi gambar */
+        object-fit: cover;
+        flex: 1; /* Membuat elemen fleksibel */
+        transition: transform 0.3s; /* Transisi untuk zoom */
+      }
+
+      .hero-image img:hover {
+        transform: scale(1.05); /* Zoom saat hover */
+      }
+
+      /* About Us Section Styling */
+      .about {
+        padding: 40px 30px;
+        background-color: #ffffff;
+        text-align: center;
+      }
+
+      .about h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .about p {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      /* Styling untuk Menu Section */
+      .menu {
+        background-color: #f9f9f9; /* Latar belakang section */
+        padding: 40px 20px; /* Padding section */
+        text-align: center; /* Center text */
+      }
+
+      .menu h2 {
+        font-size: 2.5em; /* Ukuran font untuk judul */
+        margin-bottom: 30px; /* Margin bawah judul */
+        color: #333; /* Warna teks judul */
+      }
+
+      /* Container untuk card menu */
+      .menu-container {
+        display: flex; /* Flexbox untuk layout */
+        flex-wrap: wrap; /* Membungkus item jika tidak muat */
+        justify-content: center; /* Center item di dalam container */
+        gap: 20px; /* Jarak antar card */
+      }
+
+      /* Card Menu */
+      .menu-card {
+        background-color: #fff; /* Latar belakang card */
+        border: 1px solid #ddd; /* Border card */
+        border-radius: 8px; /* Sudut membulat */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek kedalaman */
+        width: 250px; /* Lebar card */
+        overflow: hidden; /* Menyembunyikan konten yang melampaui batas */
+        transition: transform 0.2s; /* Efek transisi */
+      }
+
+      .menu-card:hover {
+        transform: scale(1.05); /* Efek zoom saat hover */
+      }
+
+      /* Gambar Menu */
+      .menu-image {
+        width: 100%; /* Lebar gambar mengikuti lebar card */
+        height: 150px; /* Tinggi tetap untuk semua gambar */
+        object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+        border-radius: 5px; /* Sudut membulat pada gambar */
+      }
+
+      /* Judul dan Deskripsi di dalam Card */
+      .menu-card h3 {
+        font-size: 1.5em; /* Ukuran font untuk nama menu */
+        margin: 15px 0; /* Margin atas dan bawah */
+      }
+
+      .menu-card p {
+        font-size: 1em; /* Ukuran font untuk deskripsi */
+        margin: 5px 0; /* Margin atas dan bawah */
+        color: #555; /* Warna teks deskripsi */
+      }
+
+      .gallery {
+        padding: 40px 20px;
+        background-color: #f9f9f9; /* Warna latar belakang */
+        text-align: center; /* Teks tengah */
+        border-top: 2px solid #e2e2e2; /* Garis atas untuk pemisah */
+      }
+
+      .gallery h2 {
+        margin-bottom: 20px;
+        font-size: 2.5em; /* Ukuran font judul */
+        color: #333; /* Warna teks judul */
+      }
+
+      .gallery-container {
+        display: grid; /* Menggunakan grid untuk layout */
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(250px, 1fr)
+        ); /* Kolom otomatis */
+        gap: 20px; /* Jarak antara item */
+      }
+
+      .gallery-item {
+        overflow: hidden; /* Menghindari overflow gambar */
+        border: 2px solid #ddd; /* Border gambar */
+        border-radius: 15px; /* Sudut border membulat */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek kedalaman */
+        transition: transform 0.3s, box-shadow 0.3s; /* Efek transisi saat hover */
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px); /* Menaikkan item saat hover */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih gelap saat hover */
+      }
+
+      .gallery-item img {
+        width: 100%; /* Lebar gambar penuh */
+        height: 200px; /* Tinggi tetap untuk gambar */
+        object-fit: cover; /* Memastikan gambar tetap proporsional */
+        transition: transform 0.3s; /* Efek transisi saat hover */
+      }
+
+      .gallery-item img:hover {
+        transform: scale(1.05); /* Zoom saat hover */
+      }
+
+      .testimoni {
+        padding: 40px;
+        background-color: #f9f9f9;
+        text-align: center;
+      }
+
+      .testimoni h2 {
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .testimoni-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .testimoni-card {
+        background-color: #fff;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        width: 300px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .testimoni-card:hover {
+        transform: scale(1.05);
+      }
+
+      .testimoni-profile {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+
+      .testimoni-quote {
+        font-style: italic;
+        color: #555;
+      }
+
+      .testimoni-name {
+        font-weight: bold;
+        color: #333;
+        margin-top: 15px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        nav {
+          display: none; /* Sembunyikan menu navigasi */
+          flex-direction: column; /* Menumpuk navigasi */
+          position: absolute; /* Posisi absolut untuk dropdown */
+          background-color: #ffffff;
+          top: 60px; /* Jarak dari atas */
+          right: 20px; /* Jarak dari kanan */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          padding: 10px 0; /* Padding di dalam dropdown */
+          width: 150px; /* Lebar dropdown */
+          border-radius: 5px; /* Sudut melengkung */
+          max-height: 0; /* Mulai dengan tinggi nol */
+          overflow: hidden; /* Sembunyikan konten */
+        }
+
+        nav.active {
+          display: flex; /* Tampilkan menu saat diaktifkan */
+          max-height: 500px; /* Tinggi maksimum saat aktif */
+        }
+
+        .hamburger {
+          display: flex; /* Tampilkan hamburger menu */
+        }
+
+        .hero-text {
+          max-width: 100%; /* Atur lebar hero text */
+          text-align: center; /* Pusatkan teks */
+        }
+
+        .highlight {
+          color: yellow; /* Warna kuning */
+          font-weight: bold; /* Teks tebal */
+        }
+
+        .about {
+          flex-direction: column; /* Susun elemen secara vertikal */
+          align-items: center; /* Pusatkan semua elemen */
+          text-align: center; /* Pusatkan teks */
+          padding: 20px; /* Padding yang lebih kecil */
+        }
+
+        .about img {
+          max-width: 80%; /* Ukuran maksimum gambar lebih kecil */
+          height: auto; /* Menjaga proporsi gambar */
+          margin-bottom: 5px; /* Jarak di bawah gambar */
+        }
+
+        .about h2 {
+          font-size: 2rem; /* Ukuran font judul lebih kecil */
+        }
+
+        .about p {
+          font-size: 1rem; /* Ukuran font paragraf lebih kecil */
+          margin: 0 20px; /* Tambahkan margin samping */
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav a {
+          font-size: 16px; /* Ukuran font navigasi lebih kecil */
+        }
+
+        .highlight {
+          color: yellow; /* Warna kuning */
+          font-weight: bold; /* Teks tebal */
+        }
+
+        .about {
+          flex-direction: column; /* Susun elemen secara vertikal */
+          align-items: center; /* Pusatkan semua elemen */
+          text-align: center; /* Pusatkan teks */
+          padding: 20px; /* Padding yang lebih kecil */
+        }
+
+        .about img {
+          max-width: 80%; /* Ukuran maksimum gambar lebih kecil */
+          height: auto; /* Menjaga proporsi gambar */
+          margin-bottom: 5px; /* Jarak di bawah gambar */
+        }
+
+        .about h2 {
+          font-size: 2rem; /* Ukuran font judul lebih kecil */
+        }
+
+        .about p {
+          font-size: 1rem; /* Ukuran font paragraf lebih kecil */
+          margin: 0 20px; /* Tambahkan margin samping */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <!-- Logo -->
+      <div class="logo">
+        <img src="img/logo.png" alt="Logo" />
+      </div>
+
+      <!-- Navbar Links -->
+      <nav id="nav">
+        <a href="#home">Beranda</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimoni">Testimoni</a>
+      </nav>
+
+      <!-- Social Media Icons -->
+      <div class="social-icons">
+        <a href="https://www.instagram.com/pancong_arum?igsh=NW14eWpkMXAxbXYw"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@pancong.arum"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/+6289670851630"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://web.facebook.com/profile.php?id=61567264907434&_rdc=1&_rdr"><i class="fab fa-facebook"></i></a> 
+        <a href="https://www.google.com/maps/place/4J6C%2BV6V,+Jl.+Yos+Sudarso+No.20,+RT.14%2FRW.07,+Kemplong+Timur,+Kemplong,+Kec.+Wiradesa,+Kabupaten+Pekalongan,+Jawa+Tengah+51152/@-6.8877711,109.6180316,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7026558d09a95d:0xc7f0d9afb25817cd!8m2!3d-6.8877764!4d109.6206065!16s%2Fg%2F11w81yyhcr?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+          <i class="fas fa-map-marker-alt"></i>
+        </a>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <div class="hamburger" id="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>
+          <span class="highlight">Kue Pancong Arum</span> Lezat dan Menggoda
+        </h1>
+        <p>
+          Rasakan cita rasa tradisional dengan setiap gigitannya. Kue pancong
+          kami terbuat dari bahan berkualitas tinggi dan disajikan dengan
+          berbagai topping pilihan.
+        </p>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://png.pngtree.com/png-vector/20240411/ourmid/pngtree-kue-pukis-or-cake-with-vanilla-strawberry-and-chocolate-flavored-glaze-vector-png-image_12257715.png"
+          alt="Kue Pancong"
+        />
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+      <img src="img/logo.png" alt="Tentang Kami" />
+      <div>
+        <h2>Tentang Kami</h2>
+        <p>
+          Pancong Arum adalah UMKM yang mengkhususkan diri dalam pembuatan kue
+          pancong dengan resep tradisional. Kami percaya bahwa kue pancong bukan
+          hanya sekadar makanan, tetapi juga bagian dari budaya yang harus
+          dilestarikan. Dengan menggunakan bahan-bahan berkualitas tinggi dan
+          proses pembuatan yang teliti, kami berkomitmen untuk menyajikan kue
+          pancong yang lezat dan memuaskan. Setiap kue yang kami buat adalah
+          hasil dari kerja keras dan dedikasi, serta kami selalu berusaha untuk
+          menghadirkan inovasi dalam setiap resep yang kami tawarkan. Visi kami
+          adalah menjadi toko kue pancong terkemuka yang dikenal akan kualitas
+          dan keunikan produk kami. Misi kami adalah memberikan pengalaman
+          terbaik bagi pelanggan melalui rasa yang otentik, pelayanan yang
+          ramah, dan nilai yang terbaik. Kami juga berkomitmen untuk mendukung
+          petani lokal dengan menggunakan bahan baku yang bersumber dari daerah
+          sekitar. Dengan cara ini, kami tidak hanya membantu ekonomi lokal
+          tetapi juga memastikan bahwa setiap kue yang kami buat memiliki cita
+          rasa yang autentik dan segar. Di Pancong Arum, setiap gigitan adalah
+          perayaan rasa, dan kami mengundang Anda untuk menikmati kelezatan kue
+          pancong yang telah kami ciptakan dengan penuh cinta dan perhatian.
+        </p>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+      <h2>Menu Populer Kami</h2>
+      <div class="menu-container">
+        <div class="menu-card">
+          <img
+            src="https://img-global.cpcdn.com/recipes/bf58b2fb0c1bd7fd/1200x630cq70/photo.jpg"
+            alt="Pancong Cake"
+            class="menu-image"
+          />
+          <h3>Pancong Coklat Lumer</h3>
+          <p>
+            Kue Pancong lezat dengan coklat lumer yang kenyal dan manis. Nikmati
+            kelezatannya sebagai camilan sore.
+          </p>
+          <p>Rp. 8.000</p>
+        </div>
+
+        <div class="menu-card">
+          <img
+            src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/bebfdc86-651c-4b04-8070-a622d3f3fcf0_Go-Biz_20220905_132221.jpeg"
+            alt="Pancong Matcha Lumer"
+            class="menu-image"
+          />
+          <h3>Pancong Matcha Lumer</h3>
+          <p>
+            Kue Pancong lembut dengan cita rasa matcha yang khas. Dengan matcha
+            lumer di atasnya, menjadikannya camilan yang manis dan menggoda.
+          </p>
+          <p>Rp. 8.000</p>
+        </div>
+
+        <div class="menu-card">
+          <img
+            src="https://asset-2.tstatic.net/tribunnewsbogortravel/foto/bank/images/pancong-lumer.jpg"
+            alt="Pancong Keju Lumer"
+            class="menu-image"
+          />
+          <h3>Pancong Keju Lumer</h3>
+          <p>
+            Kue Pancong yang nikmat dengan isian keju lumer yang gurih dan
+            creamy. Sempurna untuk menemani waktu santai Anda.
+          </p>
+          <p>Rp. 9.000</p>
+        </div>
+
+        <div class="menu-card">
+          <img
+            src="img/taro.jpeg"
+            alt="Pancong Taro Lumer"
+            class="menu-image"
+          />
+          <h3>Pancong Taro Lumer</h3>
+          <p>
+            Kue Pancong yang lembut dengan isian taro lumer yang manis dan
+            nikmat. Rasakan kelezatannya yang unik di setiap gigitannya.
+          </p>
+          <p>Rp. 8.000</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+      <h2>Galeri Lapak Pancong Arum</h2>
+      <div class="gallery-container">
+        <div class="gallery-item">
+          <img
+            src="https://img-global.cpcdn.com/recipes/bf58b2fb0c1bd7fd/1200x630cq70/photo.jpg"
+            alt="Kue Pancong Coklat Lumer"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/bebfdc86-651c-4b04-8070-a622d3f3fcf0_Go-Biz_20220905_132221.jpeg"
+            alt="Kue Pancong Matcha Lumer"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://asset-2.tstatic.net/tribunnewsbogortravel/foto/bank/images/pancong-lumer.jpg"
+            alt="Kue Pancong Keju Lumer"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="img/taro.jpeg"
+            alt="Kue Pancong Taro Lumer"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/2d3d1570-a42e-4f12-8fa1-30a3f2a79229_Go-Biz_20201205_135244.jpeg"
+            alt="Kue Pancong Taro Lumer"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://mediapijar.com/wp-content/uploads/2023/11/IMG_20231119_231519.jpg"
+            alt="Kue Pancong Taro Lumer"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/02/22/Kue-Pukis-906536589.jpg"
+            alt="Kue Pancong Taro Lumer"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgDSHqHuw_9v7lZctdTbLlLfMdTUBdCc6bZ4FZMDCROZBP5z0JTbX1Hj7UWvfcBG6yF7o&usqp=CAU"
+            alt="Kue Pancong Taro Lumer"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimoni Section -->
+    <section id="testimoni" class="testimoni">
+      <h2>Apa Kata Pelanggan Kami</h2>
+      <div class="testimoni-container">
+        <div class="testimoni-card">
+          <img
+            src="https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png"
+            alt="Rina S."
+            class="testimoni-profile"
+          />
+          <p class="testimoni-quote">
+            "Kue Pancong Arum benar-benar lezat! Coklatnya lumer dan pas banget
+            buat camilan sore."
+          </p>
+          <p class="testimoni-name">- Tegar.</p>
+        </div>
+
+        <div class="testimoni-card">
+          <img
+            src="https://icons.veryicon.com/png/o/miscellaneous/user-avatar/user-avatar-male-5.png"
+            alt="Budi W."
+            class="testimoni-profile"
+          />
+          <p class="testimoni-quote">
+            "Rasanya bikin nostalgia. Kue pancong dengan topping keju dan
+            coklatnya luar biasa enak!"
+          </p>
+          <p class="testimoni-name">- Zidan.</p>
+        </div>
+
+        <div class="testimoni-card">
+          <img
+            src="https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png"
+            alt="Siti M."
+            class="testimoni-profile"
+          />
+          <p class="testimoni-quote">
+            "Harga terjangkau, kualitas premium! Pancong Matcha favorit saya,
+            harum dan lembut."
+          </p>
+          <p class="testimoni-name">- Adhika.</p>
+        </div>
+
+        <div class="testimoni-card">
+          <img
+            src="https://png.pngtree.com/png-clipart/20200224/original/pngtree-cartoon-color-simple-male-avatar-png-image_5230557.jpg"
+            alt="Siti M."
+            class="testimoni-profile"
+          />
+          <p class="testimoni-quote">
+            "Pancong Taro lumer dengan tekstur yang lembut dan rasa taro yang
+            khas! Anak-anak sangat menyukainya."
+          </p>
+          <p class="testimoni-name">- Iwan.</p>
+        </div>
+
+        <div class="testimoni-card">
+          <img
+            src="https://w7.pngwing.com/pngs/490/157/png-transparent-male-avatar-boy-face-man-user-flat-classy-users-icon-thumbnail.png"
+            alt="Siti M."
+            class="testimoni-profile"
+          />
+          <p class="testimoni-quote">
+            "Pancong Arum menyajikan rasa tradisional dengan twist modern.
+            Favorit saya setiap kali ingin camilan manis!"
+          </p>
+          <p class="testimoni-name">- Farhan.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-wave" style="position: relative; text-align: center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ffd700"
+            fill-opacity="1"
+            d="M0,224L10,202.7C20,181,40,139,60,122.7C80,107,100,117,120,117.3C140,117,160,107,180,112C200,117,220,139,240,128C260,117,280,75,300,74.7C320,75,340,117,360,133.3C380,149,400,139,420,138.7C440,139,460,149,480,138.7C500,128,520,96,540,74.7C560,53,580,43,600,58.7C620,75,640,117,660,122.7C680,128,700,96,720,117.3C740,139,760,213,780,224C800,235,820,181,840,138.7C860,96,880,64,900,80C920,96,940,160,960,154.7C980,149,1000,75,1020,64C1040,53,1060,107,1080,138.7C1100,171,1120,181,1140,181.3C1160,181,1180,171,1200,170.7C1220,171,1240,181,1260,192C1280,203,1300,213,1320,192C1340,171,1360,117,1380,117.3C1400,117,1420,171,1430,197.3L1440,224L1440,320L1430,320C1420,320,1400,320,1380,320C1360,320,1340,320,1320,320C1300,320,1280,320,1260,320C1240,320,1220,320,1200,320C1180,320,1160,320,1140,320C1120,320,1100,320,1080,320C1060,320,1040,320,1020,320C1000,320,980,320,960,320C940,320,920,320,900,320C880,320,860,320,840,320C820,320,800,320,780,320C760,320,740,320,720,320C700,320,680,320,660,320C640,320,620,320,600,320C580,320,560,320,540,320C520,320,500,320,480,320C460,320,440,320,420,320C400,320,380,320,360,320C340,320,320,320,300,320C280,320,260,320,240,320C220,320,200,320,180,320C160,320,140,320,120,320C100,320,80,320,60,320C40,320,20,320,10,320L0,320Z"
+          ></path>
+        </svg>
+        <p
+          style="
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+            color: white;
+          "
+          class="footer-text"
+        >
+          Wiradesa, Kemplong | &copy; 2024 Pancong Arum.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const nav = document.getElementById("nav");
+
+      hamburger.addEventListener("click", () => {
+        nav.classList.toggle("active"); // Mengaktifkan/deactivate menu navigasi
+      });
+    </script>
+  </body>
+</html>
